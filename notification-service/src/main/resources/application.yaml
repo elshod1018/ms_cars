@@ -1,0 +1,32 @@
+server:
+  port: 9090
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://localhost:8671/eureka
+spring:
+  application:
+    name: NOTIFICATION-SERVICE
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+  mail:
+    host: sandbox.smtp.mailtrap.io
+    port: 25
+    username: d4a07b9eed4536
+    password: a72637ea438194
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+rabbitmq:
+  queue:
+    name: test-queue
+  exchange:
+    name: test-exchange
+  routing:
+    key: test-routing-key
