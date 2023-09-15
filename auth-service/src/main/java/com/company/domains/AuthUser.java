@@ -13,7 +13,6 @@ import lombok.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonInclude(JsonInclude.Include.NON_NULL)
 public class AuthUser{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

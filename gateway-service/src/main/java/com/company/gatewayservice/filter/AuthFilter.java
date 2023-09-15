@@ -29,14 +29,7 @@ public class AuthFilter extends AbstractGatewayFilterFactory<AuthFilter.Config> 
         return (exchange, chain) -> {
             ServerHttpRequest httpRequest = exchange.getRequest();
             if (routeValidator.isSecured.test(httpRequest)) {
-                HttpHeaders httpHeaders = httpRequest.getHeaders();
-                if (!httpHeaders.containsKey(HttpHeaders.AUTHORIZATION)) {
-                    throw new RuntimeException("Missing authorization information");
-                }
-                String authHeaders = Objects.requireNonNull(httpHeaders.get(HttpHeaders.AUTHORIZATION)).get(0);
-                if (!Objects.isNull(authHeaders) && authHeaders.startsWith("Bearer ")) {
-                    authHeaders = authHeaders.substring(7);
-                }
+                String authHeaders = getString(httpRequest);
                 try {
                     Boolean isValid = restTemplate.getForObject("http://AUTH-SERVICE//api/v1/auth/token/validate?token=" + authHeaders, Boolean.class);
                 } catch (Exception e) {
@@ -45,6 +38,18 @@ public class AuthFilter extends AbstractGatewayFilterFactory<AuthFilter.Config> 
             }
             return chain.filter(exchange);
         };
+    }
+
+    private static String getString(ServerHttpRequest httpRequest) {
+        HttpHeaders httpHeaders = httpRequest.getHeaders();
+        if (!httpHeaders.containsKey(HttpHeaders.AUTHORIZATION)) {
+            throw new RuntimeException("Missing authorization information");
+        }
+        String authHeaders = Objects.requireNonNull(httpHeaders.get(HttpHeaders.AUTHORIZATION)).get(0);
+        if (!Objects.isNull(authHeaders) && authHeaders.startsWith("Bearer ")) {
+            authHeaders = authHeaders.substring(7);
+        }
+        return authHeaders;
     }
 
     public static class Config {

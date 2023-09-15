@@ -1,10 +1,10 @@
-package com.example.serverregistery;
+package com.company.journeyservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ServerRegistryApplicationTests {
+class JourneyServiceApplicationTests {
 
     @Test
     void contextLoads() {

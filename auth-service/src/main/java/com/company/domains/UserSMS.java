@@ -14,7 +14,6 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonInclude(JsonInclude.Include.NON_NULL)
 public class UserSMS implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,9 +25,8 @@ public class UserSMS implements Serializable {
     @Column(nullable = false, updatable = false)
     private Integer userId;
 
-    @Builder.Default
     @CreationTimestamp
-    private LocalDateTime fromTime = LocalDateTime.now();
+    private LocalDateTime fromTime;
 
     @Builder.Default
     private LocalDateTime toTime = LocalDateTime.now().plusMinutes(2);

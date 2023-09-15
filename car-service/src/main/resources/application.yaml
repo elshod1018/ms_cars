@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: CAR-SERVICE
+  datasource:
+#    url: jdbc:h2:mem:cars_task
+    url: jdbc:h2:file:./car_service
+    username: sa
+    password: sa
+    driver-class-name: org.h2.Driver
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    hibernate:
+      ddl-auto: update
+server:
+  port: 7575
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8671/eureka

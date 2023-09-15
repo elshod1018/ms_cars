@@ -1,6 +1,6 @@
 spring:
   application:
-    name: server-registry
+    name: SERVER_REGISTRY
 server:
   port: 8671
 eureka:

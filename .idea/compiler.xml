@@ -7,9 +7,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="server-registry" />
         <module name="auth-service" />
+        <module name="comment-service" />
         <module name="gateway-service" />
+        <module name="server-registry" />
+        <module name="journey-service" />
+        <module name="car-service" />
         <module name="notification-service" />
       </profile>
     </annotationProcessing>
@@ -22,8 +25,11 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="auth-server" options="-parameters" />
       <module name="auth-service" options="-parameters" />
+      <module name="car-service" options="-parameters" />
+      <module name="comment-service" options="-parameters" />
       <module name="gateway" options="-parameters" />
       <module name="gateway-service" options="-parameters" />
+      <module name="journey-service" options="-parameters" />
       <module name="notification-service" options="-parameters" />
       <module name="server-registry" options="-parameters" />
     </option>

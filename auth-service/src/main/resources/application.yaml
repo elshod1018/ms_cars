@@ -13,7 +13,8 @@ spring:
   application:
     name: AUTH-SERVICE
   datasource:
-    url: jdbc:h2:file:./cars_task
+#    url: jdbc:h2:mem:cars_task
+    url: jdbc:h2:file:./auth_service
     username: sa
     password: sa
     driver-class-name: org.h2.Driver

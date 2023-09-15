@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: JOURNEY-SERVICE
+  datasource:
+    #    url: jdbc:h2:mem:cars_task
+    url: jdbc:h2:file:./journey_service
+    username: sa
+    password: sa
+    driver-class-name: org.h2.Driver
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    hibernate:
+      ddl-auto: update
+server:
+  port: 9595
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8671/eureka
+car-service:
+  baseUrl: http://CAR-SERVICE/api/v1/cars
+

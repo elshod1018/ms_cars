@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: COMMENT-SERVICE
+  datasource:
+#    url: jdbc:h2:mem:cars_task
+    url: jdbc:h2:file:./comment_service
+    username: sa
+    password: sa
+    driver-class-name: org.h2.Driver
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    hibernate:
+      ddl-auto: update
+server:
+  port: 8585
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8671/eureka
