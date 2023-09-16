@@ -22,4 +22,6 @@ eureka:
       defaultZone: http://localhost:8671/eureka
 car-service:
   baseUrl: http://CAR-SERVICE/api/v1/cars
+comment-service:
+  baseUrl: http://COMMENT-SERVICE/api/v1/comments
 

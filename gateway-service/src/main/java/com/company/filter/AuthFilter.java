@@ -1,11 +1,8 @@
-package com.company.gatewayservice.filter;
+package com.company.filter;
 
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.ResponseEntity;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
@@ -31,8 +28,9 @@ public class AuthFilter extends AbstractGatewayFilterFactory<AuthFilter.Config> 
             if (routeValidator.isSecured.test(httpRequest)) {
                 String authHeaders = getString(httpRequest);
                 try {
-                    Boolean isValid = restTemplate.getForObject("http://AUTH-SERVICE//api/v1/auth/token/validate?token=" + authHeaders, Boolean.class);
+                    Boolean isValid = restTemplate.getForObject("http://localhost:7070/api/v1/auth/token/validate?token=" + authHeaders, Boolean.class);
                 } catch (Exception e) {
+                    e.printStackTrace();
                     throw new RuntimeException("Invalid token");
                 }
             }

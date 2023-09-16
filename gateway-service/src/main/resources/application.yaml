@@ -8,8 +8,28 @@ spring:
           uri: lb://AUTH-SERVICE
           predicates:
             - Path=/api/v1/auth/**
-#          filters:
-#            - AuthFilter
+        #          filters:
+        #            - AuthFilter
+        - id: JOURNEY-SERVICE
+          uri: lb://JOURNEY-SERVICE
+          predicates:
+            - Path=/api/v1/journeys/**
+          filters:
+            - AuthFilter
+
+        - id: CAR-SERVICE
+          uri: lb://CAR-SERVICE
+          predicates:
+            - Path=/api/v1/cars/**
+          filters:
+            - AuthFilter
+
+        - id: COMMENT-SERVICE
+          uri: lb://COMMENT-SERVICE
+          predicates:
+            - Path=/api/v1/comments/**
+          filters:
+            - AuthFilter
 
 server:
   port: 8080

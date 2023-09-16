@@ -1,7 +1,8 @@
 package com.company.service;
 
-import com.company.clients.CarClient;
+import com.company.clients.*;
 import com.company.domains.Journey;
+import com.company.dto.CommentCreateDTO;
 import com.company.dto.JourneyCreateDTO;
 import com.company.dto.JourneyFinishDTO;
 import com.company.dto.JourneyUpdateDTO;
@@ -16,6 +17,7 @@ import java.util.List;
 public class JourneyService {
     private final JourneyRepository journeyRepository;
     private final CarClient carClient;
+    private final CommentClient commentClient;
 
     public Journey create(JourneyCreateDTO dto) {
         Integer carId = dto.carId();
@@ -61,7 +63,7 @@ public class JourneyService {
         journey.setFinished(true);
         journeyRepository.save(journey);
         carClient.discard(journey.getCarId());
-
+        commentClient.createComment(new CommentCreateDTO(dto.commentDescription(), journey.getCarId(), journey.getId()));
         return journey;
     }
 }
