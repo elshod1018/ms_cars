@@ -25,7 +25,6 @@ public class AuthController {
 
     @PostMapping("/user/register")
     public ResponseEntity<AuthUser> register(@Valid @RequestBody UserCreateDTO dto) throws JsonProcessingException {
-        System.err.println(dto.toString());
         AuthUser authUser = authUserService.create(dto);
         UserSMS smsCode = userSMSService.createSMSCode(authUser);
         rabbitMQProducer.sendMessage(new MessageSendDTO(authUser.getEmail(), smsCode.getCode()));
