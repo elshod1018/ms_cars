@@ -29,8 +29,8 @@ public class CarController {
         return ResponseEntity.ok(cars);
     }
 
-    @GetMapping("/get/{id:.*}")
-    public ResponseEntity<Car> get(@PathVariable Integer id) {
+    @GetMapping("/get/{idd}")
+    public ResponseEntity<Car> get(@PathVariable(name = "idd") Integer id) {
         Car car = carService.getById(id);
         return ResponseEntity.ok(car);
     }
